@@ -1,0 +1,38 @@
+# protodune_dataprep.fcl
+
+# David Adams
+# July 2017
+#
+# Run protodune reco only through data prep.
+
+#include "protoDUNE_reco_noise.fcl"
+
+physics.reco: ["caldata"]
+
+ExtraDisplayTools: [
+  "rawAdcPlotter",
+  "preparedAdcPlotter",
+  "preparedAdcDetectorPlotColl",
+  "preparedAdcDetectorPlotInd1",
+  "preparedAdcDetectorPlotInd2"
+]
+
+# Add display tools to the new data prep service.
+# This should have no effect on the old service.
+services.RawDigitPrepService.AdcChannelToolNames: [
+  @sequence::services.RawDigitPrepService.AdcChannelToolNames,
+  @sequence::ExtraDisplayTools
+]
+
+tools.rawAdcPlotter.LogLevel:  2
+tools.rawAdcPlotter.FirstTick: 3000
+tools.rawAdcPlotter.LastTick:  4200
+tools.rawAdcPlotter.MaxSignal: 50
+#tools.rawAdcPlotter.Palette: 104  # kTemperatureMap
+#tools.rawAdcPlotter.Palette: 105  # kThermometer
+
+tools.preparedAdcPlotter.LogLevel:  @local::tools.rawAdcPlotter.LogLevel
+tools.preparedAdcPlotter.FirstTick: @local::tools.rawAdcPlotter.FirstTick
+tools.preparedAdcPlotter.LastTick:  @local::tools.rawAdcPlotter.LastTick
+tools.preparedAdcPlotter.MaxSignal: 10
+tools.preparedAdcPlotter.Palette:  @local::tools.rawAdcPlotter.Palette
