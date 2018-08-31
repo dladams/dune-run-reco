@@ -1,0 +1,22 @@
+# chanmap.fcl
+
+# David Adams
+# July 2018
+#
+# Run protodune reco only through data prep.
+
+#include "protoDUNE_reco_noise.fcl"
+
+physics.reco: ["caldata"]
+
+# Use the online protoDUNE channel map.
+physics.producers.caldata.DoGroups: false
+physics.producers.caldata.OnlineChannelMapTool: "pd_onlineChannelMap"
+
+# Add display tools to the new data prep service.
+# This should have no effect on the old service.
+services.RawDigitPrepService.AdcChannelToolNames: [
+  digitReader,
+  pdtps_adcChannelApaFembPlotter,
+  pdtps_adcChannelFembChannelPlotter
+]

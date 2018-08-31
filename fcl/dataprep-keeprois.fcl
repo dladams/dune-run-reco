@@ -1,0 +1,16 @@
+# dataprep-keeprois.fcl
+
+#include "dataprep.fcl"
+
+tools.adcThresholdSignalFinder.Threshold: 100000
+tools.adcThresholdSignalFinder.BinsBefore: 0
+tools.adcThresholdSignalFinder.BinsAfter: 0
+tools.adcThresholdSignalFinder.LogLevel: 1
+
+services.RawDigitPrepService.AdcChannelToolNames: [
+  @sequence::services.RawDigitPrepService.AdcChannelToolNames,
+  "adcKeepAllSignalFinder",
+  @sequence::ExtraDisplayTools
+]
+tools.adcKeepAllSignalFinder.LogLevel: 2
+

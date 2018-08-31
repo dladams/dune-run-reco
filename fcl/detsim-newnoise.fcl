@@ -1,0 +1,3 @@
+#include "protoDUNE_detsim_noise.fcl"
+
+services.ChannelNoiseService: @local::pdsp_chnoiseAug2018

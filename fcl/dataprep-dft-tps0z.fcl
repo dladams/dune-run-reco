@@ -1,0 +1,19 @@
+# dataprep-keeprois.fcl
+
+#include "dataprep.fcl"
+
+tools.adcThresholdSignalFinder.Threshold: 100000
+tools.adcThresholdSignalFinder.BinsBefore: 0
+tools.adcThresholdSignalFinder.BinsAfter: 0
+tools.adcThresholdSignalFinder.LogLevel: 1
+
+services.RawDigitPrepService.AdcChannelToolNames: [
+  "digitReader",
+  "adcSampleFiller",
+  "adcFFT",
+  "adcPlotDftTickPowerLog"
+]
+tools.adcKeepAllSignalFinder.LogLevel: 2
+
+physics.producers.caldata.KeepChannelBegin: 2080
+physics.producers.caldata.KeepChannelEnd:   2560

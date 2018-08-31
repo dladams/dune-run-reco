@@ -1,0 +1,12 @@
+# dataprep-dft.fcl
+#
+# David Adams
+# Aug 2018
+#
+# Use data prep to make dqm plots
+
+#include "dataprep.fcl"
+#include "protodune_dqm.fcl"
+
+physics.producers.caldata.KeepChannelBegin:   0
+physics.producers.caldata.KeepChannelEnd:     0

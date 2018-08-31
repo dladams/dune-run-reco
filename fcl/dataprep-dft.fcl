@@ -1,0 +1,19 @@
+# dataprep-dft.fcl
+#
+# David Adams
+# Aug 2018
+#
+# Use data prep to make DFT log plots
+
+#include "dataprep.fcl"
+
+services.RawDigitPrepService.AdcChannelToolNames: [
+  "digitReader",
+  "adcSampleFiller",
+  "adcFFT",
+  "adcPlotDftTickPowerLog"
+]
+tools.adcKeepAllSignalFinder.LogLevel: 2
+
+physics.producers.caldata.KeepChannelBegin:   0
+physics.producers.caldata.KeepChannelEnd:   400
